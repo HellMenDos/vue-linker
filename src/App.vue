@@ -1,11 +1,27 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <nav v-if="isAuth">
+    User
+  </nav>
+  <nav v-else>
+    <router-link to="/">Login</router-link> |
+    <router-link to="/reg">Registration</router-link>
   </nav>
   <router-view/>
 </template>
 
+<script>
+import { defineComponent } from 'vue';
+import useAuth from '@/hooks/useAuth';
+
+export default defineComponent({
+  setup() {
+    const auth = useAuth()
+    return {
+      isAuth: auth.isAuth()
+    }
+  }
+})
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
