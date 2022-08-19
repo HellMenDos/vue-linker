@@ -5,6 +5,7 @@
       {{ item.name }} |
     </router-link>
   </nav>
+  <router-view></router-view>
 </template>
 
 <script>
@@ -17,7 +18,7 @@ export default defineComponent({
     const store = useLinkStore()
 
     return {
-      links: store.all
+      links: store.allData
     }
   }
 })

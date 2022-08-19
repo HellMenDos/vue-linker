@@ -5,6 +5,9 @@ function useLocalStorage() {
     },
     setItem(key: string, data: any) {
       return localStorage.setItem(key, data)
+    },
+    removeItem(key: string) {
+      return localStorage.removeItem(key)
     }
   }
 }

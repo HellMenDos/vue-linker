@@ -15,6 +15,12 @@ function useAuth() {
       router.push({
         path: '/main'
       })
+    },
+    logout() {
+      storage.removeItem('tokens')
+      router.push({
+        path: '/'
+      })
     }
   }
 }

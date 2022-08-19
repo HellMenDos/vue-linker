@@ -17,6 +17,10 @@ module.exports = {
     "semi": "off",
     "@typescript-eslint/semi": "warn",
     "comma-dangle": "off",
-    "keyword-spacing": "off"
+    "keyword-spacing": "off",
+    "object-curly-newline": "off",
+    "object-property-newline": "off",
+    "object-curly-spacing": "off",
+    "indent": "off"
   },
 };

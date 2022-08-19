@@ -8,6 +8,9 @@ import {
 import LoginView from '@/views/LoginView.vue'
 import RegView from '@/views/RegView.vue'
 import MainView from '@/views/MainView.vue'
+import UsersView from '@/views/UsersView.vue'
+import ChartView from '@/views/ChartView.vue'
+
 import useAuth from '@/hooks/useAuth';
 
 const routes: Array<RouteRecordRaw> = [
@@ -33,7 +36,12 @@ const routes: Array<RouteRecordRaw> = [
     component: MainView,
     meta: {
       auth: true
-    }
+    },
+    children: [
+      {path: ':id', name: 'users', component: UsersView },
+      {path: '/charts', name: 'charts', component: ChartView }
+
+    ]
   },
 ];
 

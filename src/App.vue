@@ -1,6 +1,7 @@
 <template>
-  <nav v-if="isAuth">
-    User
+  <nav v-if="isAuth" class="profile">
+    <h1>User</h1>
+    <button-field @click="logout" title="Exit"></button-field>
   </nav>
   <nav v-else>
     <router-link to="/">Login</router-link> |
@@ -10,14 +11,27 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, ref, watch } from 'vue';
+import { useRoute } from 'vue-router'
 import useAuth from '@/hooks/useAuth';
+import ButtonField from '@/components/ButtonField.vue';
 
 export default defineComponent({
+  components: { ButtonField },
   setup() {
     const auth = useAuth()
+    const isAuth = ref(auth.isAuth())
+    const route = useRoute()
+
+    watch(
+      () => route.fullPath,
+      async () => {
+        isAuth.value = auth.isAuth()
+      }
+    )
     return {
-      isAuth: auth.isAuth()
+      isAuth,
+      logout: auth.logout
     }
   }
 })
@@ -42,5 +56,10 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
